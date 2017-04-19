@@ -1,0 +1,30 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{quoteGroup.category | uppercase}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card *ngFor="let quote of quoteGroup.quotes; let i=index">
+    <ion-card-title>
+      #{{i + 1}}
+    </ion-card-title>
+    <ion-card-content>
+      <p>{{quote.text}}</p>
+      <p class="author">{{quote.person}}</p>
+    </ion-card-content>
+    <ion-row>
+      <ion-col text-right>
+        <button ion-button clear small *ngIf="!isFav(quote)" (click)="addToFav(quote)">
+          Favorite
+        </button>
+        <button ion-button clear small color="danger" *ngIf="isFav(quote)" (click)="removeFromFav(quote)">
+          UnFavorite
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>
